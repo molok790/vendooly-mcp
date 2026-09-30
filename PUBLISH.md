@@ -76,7 +76,7 @@ Adds **Vendooly**, a remote MCP server that connects ChatGPT, Claude and other M
 - **Official MCP Registry:** `com.vendooly/vendooly` (active since August 2026)
 
 Why it fits the quality criteria:
-- Official and production: hosted multi-tenant service used daily by Amazon sellers and agencies on EU, NA and FE marketplaces.
+- Official and production: hosted multi-tenant service built for Amazon sellers and agencies on EU, NA and FE marketplaces.
 - Security: server-side OAuth scope enforcement (`amazon.read` / `amazon.write` / `amazon.ads`), MCP tool annotations on every tool, explicit human approval before any write, server-side hard limits on bulk size, Ads budgets and price changes. Security page: https://vendooly.com/en/security/ · tool manifest: https://vendooly.com/trust/capabilities.json
 - Support: hello@vendooly.com, public wiki in 5 languages (https://vendooly.com/wiki/en/), in-product feedback tool.
 EOF
