@@ -1,0 +1,14 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-10-17/server.schema.json",
+  "name": "com.vendooly/vendooly",
+  "title": "Vendooly",
+  "description": "Amazon Seller Central and Amazon Ads for AI assistants: catalog, orders, FBA, pricing, PPC.",
+  "version": "1.0.0",
+  "websiteUrl": "https://vendooly.com",
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://mcp.vendooly.com/mcp"
+    }
+  ]
+}
