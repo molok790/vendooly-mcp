@@ -24,7 +24,7 @@ You ask in plain language: why did sales drop this week, which SKUs will stock o
 | MCP Registry ID | `com.vendooly/vendooly` |
 | Clients | Claude, ChatGPT, any MCP client that supports remote servers with OAuth |
 | Amazon APIs | Selling Partner API (Seller Central, Vendor Central), Amazon Ads API |
-| Tools | 106 (65 read, 41 write) + `ping`; 44 for Amazon Ads, 7 for Vendor Central |
+| Tools | Discover the current catalog with `tools/list`; authenticated visibility depends on scopes, plan, permissions and connected platforms |
 | Languages | English, Italian, German, Spanish, French |
 | Website | https://vendooly.com/en/ |
 | Pricing | https://vendooly.com/pricing.html |
@@ -44,6 +44,18 @@ Before connecting an assistant you need a Vendooly account with at least one Ama
 1. Sign up at https://vendooly.com/signup.html (14-day free trial).
 2. In the app, connect Seller Central with Amazon's official OAuth. One authorization covers all marketplaces of a region (EU, NA, FE).
 3. Optionally connect Amazon Ads: it is a separate authorization.
+
+## Discovery and directory metadata
+
+- **Service URL:** `https://mcp.vendooly.com/mcp`
+- **Transport:** `streamable-http`
+- **Authentication for operational tool calls:** OAuth 2.1 with Dynamic Client Registration and PKCE (S256). Successful anonymous discovery does **not** mean anonymous access to Amazon data or actions.
+- **Public discovery:** supported discovery requests without an Authorization header can receive `initialize`, `ping` and `tools/list` responses. Recognized OAuth clients retain the authentication challenge needed to start authorization. Public discovery exposes tool metadata, not seller data.
+- **Tool counts:** use the complete live `tools/list` response, including pagination when supplied. A directory's stored probe count is a dated observation; it must not be presented as the guaranteed catalog size. Authenticated visibility is filtered by scopes, plan, permissions and connected platforms.
+- **Pricing:** consult https://vendooly.com/pricing.html for current plans and revenue bands.
+- **Registry identity:** `com.vendooly/vendooly`. Third-party directory grades and ownership claims are separate from the official MCP Registry record and are not product certifications.
+
+Directory operators should declare OAuth authentication even when their discovery probe succeeds anonymously. Do not classify the operational service as public access, and do not infer a current tool count from this documentation's historical inventory.
 
 ## Connect it
 
@@ -70,7 +82,7 @@ Details: [docs/security.md](docs/security.md).
 
 ## Tools
 
-106 tools grouped by area (full table with read/write and description: [docs/tools.md](docs/tools.md)).
+The areas below summarize the documented catalog snapshot, rather than a guaranteed current tool count. Use live `tools/list` for the tools available to your connection (reference table: [docs/tools.md](docs/tools.md)).
 
 - **Accounts and overview** (5): `list_clients`, `get_client_status`, `get_dashboard_data`, `get_all_dashboards`, `get_account_health`
 - **Analysis and history** (4): `execute_sql`, `weekly_recap`, `diagnose_sales_drop`, `findings_list`
@@ -148,7 +160,7 @@ Vendooly è un **server MCP remoto** che collega ChatGPT e Claude al tuo seller 
 - Endpoint: `https://mcp.vendooly.com/mcp` (remoto, streamable HTTP, OAuth 2.1)
 - Claude: Impostazioni → Connettori → *Aggiungi connettore personalizzato* → incolla l'URL → autorizza
 - ChatGPT: Impostazioni → Connettori / App → *Crea* → incolla l'URL, autenticazione OAuth → autorizza
-- 106 strumenti (65 di lettura, 41 di azione), 44 per Amazon Ads, 7 per Vendor Central
+- Catalogo strumenti corrente via `tools/list`; la visibilità autenticata dipende da scope, piano, permessi e piattaforme collegate
 - Prova gratuita di 14 giorni; gratis sotto 2.000€/mese di fatturato Amazon. Prezzi: https://vendooly.com/pricing.html
 - Guida in italiano: https://vendooly.com/guida.html · Wiki: https://vendooly.com/wiki/
 - Contatto: hello@vendooly.com
