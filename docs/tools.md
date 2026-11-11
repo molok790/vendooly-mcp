@@ -1,8 +1,8 @@
 # Vendooly MCP tools
 
-This is the list of tools the Vendooly remote MCP server exposes to the assistant (Claude, ChatGPT or any MCP client). Names and access levels come from the production server code; the one-line descriptions are summaries.
+This is a reference snapshot of the Vendooly remote MCP tool catalog, published on 2026-09-30. Names and access levels were documented from the server code; the one-line descriptions are summaries. For the current catalog, use live `tools/list` and follow pagination when supplied. Authenticated visibility depends on scopes, plan, permissions and connected platforms.
 
-**106 tools: 65 read, 41 write, plus a `ping` health check.** 44 tools are for Amazon Ads (Sponsored Products, Sponsored Brands, Sponsored Display) and 7 for Vendor Central.
+**Historical snapshot: 106 tools (65 read, 41 write), plus a `ping` health check; not a guaranteed current count.** 44 tools are for Amazon Ads (Sponsored Products, Sponsored Brands, Sponsored Display) and 7 for Vendor Central.
 
 Access legend:
 
